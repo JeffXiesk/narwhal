@@ -110,10 +110,12 @@ class InstanceManager:
         response = client.describe_images(
             Filters=[{
                 'Name': 'description',
-                'Values': ['Canonical, Ubuntu, 20.04 LTS, amd64 focal image build on 2020-10-26']
+                'Values': ['Canonical, Ubuntu, 20.04 LTS, amd64 focal image build on 2023-10-25']
             }]
         )
+        # print('response', response)
         return response['Images'][0]['ImageId']
+        # return 'ami-06aa3f7caf3a30282'
 
     def create_instances(self, instances):
         assert isinstance(instances, int) and instances > 0
@@ -163,6 +165,8 @@ class InstanceManager:
             Print.info('Waiting for all instances to boot...')
             self._wait(['pending'])
             Print.heading(f'Successfully created {size} new instances')
+            Print.heading(f'Wait 30s for the initializing')
+            sleep(30)            
         except ClientError as e:
             raise BenchError('Failed to create AWS instances', AWSError(e))
 
