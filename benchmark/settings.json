@@ -1,7 +1,7 @@
 {
     "key": {
         "name": "shaokang",
-        "path": "~/narwhal/benchmark/key/id_rsa"
+        "path": "/home/ubuntu/narwhal/benchmark/key/id_rsa"
     },
     "port": 5000,
     "repo": {
